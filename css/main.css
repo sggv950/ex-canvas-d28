@@ -1,0 +1,13 @@
+.container {
+    width: 100%;
+}
+
+.header {
+    width: 1080px;
+    text-align: center;
+    height: 50px;
+}
+
+#main-canvas {
+    background-color: lightblue;
+}
