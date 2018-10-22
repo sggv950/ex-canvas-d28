@@ -4,6 +4,8 @@ var ctx = gCanvas.getContext('2d');
 var gMouseState = false;
 var gShape = 'square';
 var gOuterColor = '#FF0000';
+var gLastPosX = 0;
+var gLastPosY = 0;
 
 function setShape(elShape) {
     gShape = elShape;
@@ -18,13 +20,15 @@ function onMouseUp() {
     gMouseState = false;
 }
 
-
+function isValidPos(x, y){
+    return Math.abs(x - gLastPosX) > 40 || Math.abs(y - gLastPosY) > 40;
+}
 
 function draw(ev) {
-
-    if (gMouseState) {
-        var coorX = ev.clientX - 8;
-        var coorY = ev.clientY - 58;
+    var coorX = ev.offsetX;
+    var coorY = ev.offsetY;
+    var isValid = isValidPos(coorX, coorY);
+    if (gMouseState && isValid) {
         var randX = getRandomIntInclusive(10, 100);
         ctx.strokeStyle = gOuterColor;
         
@@ -35,10 +39,12 @@ function draw(ev) {
             ctx.arc(coorX,coorY,randX,0,Math.PI*2);
             ctx.stroke();
         }
+        gLastPosX = coorX;
+        gLastPosY = coorY;
     }
 
 
-    console.log(ev);
+    // console.log(ev);
 
 
 }
