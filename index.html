@@ -11,6 +11,7 @@
 
 <body>
 
+    <h1>HTML Canvas</h1>
     <div class="header">
         <input type="color" name="shapeColor" id="shapeColor" value="#FF0000" onchange="setShapeColor(this)">
         <input type="color" name="bgColor" id="bgColor" value="#add8e6" onchange="setBgColor(this)">
@@ -18,8 +19,8 @@
             <option value="square">Square</option>
             <option value="circle">Circle</option>
         </select>
-        <button>Save</button>
-        <button>Clear</button>
+        <button><a onclick="saveCanvas(this)">Save</a></button>
+        <button onclick="clearCanvas()">Clear</button>
         <button>About</button>
     </div>
     <div class="container">

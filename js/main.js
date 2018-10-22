@@ -3,7 +3,7 @@ var gCanvas = document.querySelector('#main-canvas');
 var ctx = gCanvas.getContext('2d');
 var gMouseState = false;
 var gShape = 'square';
-var gOuterColor = '#FF0000';
+var gShapeColor = '#FF0000';
 var gLastPosX = 0;
 var gLastPosY = 0;
 
@@ -15,6 +15,13 @@ function onMouseDown() {
     gMouseState = true;
 }
 
+function setBgColor(elColor){
+    gCanvas.style.backgroundColor = elColor.value;
+}
+
+function setShapeColor(elColor){
+    gShapeColor = elColor.value;
+}
 
 function onMouseUp() {
     gMouseState = false;
@@ -30,7 +37,7 @@ function draw(ev) {
     var isValid = isValidPos(coorX, coorY);
     if (gMouseState && isValid) {
         var randX = getRandomIntInclusive(10, 100);
-        ctx.strokeStyle = gOuterColor;
+        ctx.strokeStyle = gShapeColor;
         
         if (gShape === 'square') {
             ctx.strokeRect(coorX, coorY, randX, randX);
@@ -42,10 +49,14 @@ function draw(ev) {
         gLastPosX = coorX;
         gLastPosY = coorY;
     }
-
-
-    // console.log(ev);
-
-
 }
 
+function saveCanvas(elLink) {
+    console.log(elLink);
+    elLink.href = gCanvas.toDataURL();
+    elLink.download = 'my-canvas.jpg';
+}
+
+function clearCanvas() {
+    ctx.clearRect(0,0,gCanvas.width, gCanvas.height);
+}
